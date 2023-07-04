@@ -1,6 +1,7 @@
 const host = "https://wedev-api.sky.pro/api/v2/maksim-balyaev/comments";
 
 // ---------- Получаем список имеющихся комментариев --------------------------
+
 export async function getAndRender({ token }) {
   return fetch(host, {
     method: "GET",
@@ -19,6 +20,7 @@ export async function getAndRender({ token }) {
 }
 
 // ---------- Отправляем POST-запрос на сервер, чтобы добавить комментарий ----
+
 export async function addComment({ text, token }) {
   return fetch(host, {
     method: "POST",
@@ -40,6 +42,7 @@ export async function addComment({ text, token }) {
 }
 
 // ---------- Отправляем POST-запрос на сервер, чтобы зарегистрировать нового пользователя ---
+
 export async function registerUser({ login, password, name }) {
     return fetch("https://wedev-api.sky.pro/api/user", {
       method: "POST",
@@ -58,6 +61,7 @@ export async function registerUser({ login, password, name }) {
 
   
 // ---------- Отправляем POST-запрос на сервер, чтобы авторизовать пользователя
+
 export async function loginUser({ login, password }) {
   return fetch("https://wedev-api.sky.pro/api/user/login", {
     method: "POST",
