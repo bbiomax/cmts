@@ -1,21 +1,12 @@
 import { addComment, getAndRender } from "./api.js";
 import { renderLoginComponent, name } from "./components/login-component.js";
-
+import { format } from "date-fns";
 
 // let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
 let token = null;
 let comments = [];
 let loadingComments = true;
 let isLoadingAdd = false;
-
-function normalDate(date) {
-  const year = date.getFullYear().toString().slice(-2);
-  const month = ('0' + (date.getMonth() + 1)).slice(-2);
-  const day = ('0' + date.getDate()).slice(-2);
-  const hours = ('0' + date.getHours()).slice(-2);
-  const minutes = ('0' + date.getMinutes()).slice(-2);
-  return `${day}.${month}.${year} ${hours}:${minutes}`;
-}
 
 const getComments = async () => {
   renderApp(loadingComments);
@@ -58,11 +49,11 @@ const renderApp = (loadingComments) => {
 
   const commentsHTML = comments 
     .map((comment, index) => {
-      const formattedDate = normalDate(new Date(comment.date));
+      const createDate = format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss');
       return `<li class="comment" data-index='${index}'>
             <div class="comment-header">
               <div>${comment.name}</div>
-              <div>${formattedDate}</div>
+              <div>${createDate}</div>
             </div>
             <div class="comment-body">
               <div class="comment-text">
